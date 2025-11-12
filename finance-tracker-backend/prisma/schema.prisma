@@ -1,0 +1,60 @@
+// prisma/schema.prisma
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL") 
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// The core User model
+model User {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  password  String 
+  createdAt DateTime @default(now())
+
+  categories   Category[]
+  transactions Transaction[]
+  budgets      Budget[]
+}
+
+// Model for transaction categories
+model Category {
+  id     Int    @id @default(autoincrement())
+  name   String
+  type   String // "income" or "expense"
+  
+  user   User @relation(fields: [userId], references: [id])
+  userId Int  
+  
+  transactions Transaction[]
+}
+
+// Model for individual transactions
+model Transaction {
+  id          Int      @id @default(autoincrement())
+  description String
+  amount      Float
+  date        DateTime
+
+  user   User @relation(fields: [userId], references: [id])
+  userId Int  
+
+  category   Category @relation(fields: [categoryId], references: [id])
+  categoryId Int      
+}
+
+// Model for budget goals
+model Budget {
+  id          Int      @id @default(autoincrement())
+  name        String
+  totalAmount Float
+  startDate   DateTime
+  endDate     DateTime
+
+  user   User @relation(fields: [userId], references: [id])
+  userId Int 
+}
