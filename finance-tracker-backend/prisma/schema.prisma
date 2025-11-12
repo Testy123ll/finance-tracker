@@ -1,8 +1,8 @@
 // prisma/schema.prisma
 
 datasource db {
-  provider = "sqlite"
-  url      = env("DATABASE_URL") 
+  provider = "postgresql" // MUST be POSTGRESQL
+  url      = env("DATABASE_URL")
 }
 
 generator client {
@@ -13,22 +13,22 @@ generator client {
 model User {
   id        Int      @id @default(autoincrement())
   email     String   @unique
-  password  String 
+  password  String
   createdAt DateTime @default(now())
 
-  categories   Category[]
-  transactions Transaction[]
-  budgets      Budget[]
+  categories    Category[]
+  transactions  Transaction[]
+  budgets       Budget[]
 }
 
 // Model for transaction categories
 model Category {
-  id     Int    @id @default(autoincrement())
-  name   String
-  type   String // "income" or "expense"
+  id    Int    @id @default(autoincrement())
+  name  String
+  type  String // "income" or "expense"
   
-  user   User @relation(fields: [userId], references: [id])
-  userId Int  
+  user  User @relation(fields: [userId], references: [id])
+  userId Int
   
   transactions Transaction[]
 }
@@ -40,11 +40,11 @@ model Transaction {
   amount      Float
   date        DateTime
 
-  user   User @relation(fields: [userId], references: [id])
-  userId Int  
+  user    User @relation(fields: [userId], references: [id])
+  userId Int
 
-  category   Category @relation(fields: [categoryId], references: [id])
-  categoryId Int      
+  category    Category @relation(fields: [categoryId], references: [id])
+  categoryId Int       
 }
 
 // Model for budget goals
@@ -55,6 +55,6 @@ model Budget {
   startDate   DateTime
   endDate     DateTime
 
-  user   User @relation(fields: [userId], references: [id])
-  userId Int 
+  user    User @relation(fields: [userId], references: [id])
+  userId Int
 }
