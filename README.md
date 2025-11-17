@@ -88,6 +88,8 @@ NEXT_PUBLIC_API_URL=http://localhost:3001
 
 ### Development Mode (Both Services)
 
+#### Option 1: Using npm (macOS/Linux)
+
 From the root directory:
 
 ```bash
@@ -95,6 +97,24 @@ npm run dev
 ```
 
 This starts both the backend (http://localhost:3001) and frontend (http://localhost:3000) concurrently.
+
+#### Option 2: Using Batch Script (Windows)
+
+Double-click `start-dev.bat` or run:
+
+```bash
+start-dev.bat
+```
+
+This opens two command windows - one for the backend and one for the frontend.
+
+#### Option 3: Using PowerShell Script (Windows)
+
+```powershell
+.\start-dev.ps1
+```
+
+This opens two PowerShell windows - one for the backend and one for the frontend.
 
 ### Individual Services
 
