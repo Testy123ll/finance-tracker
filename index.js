@@ -4,18 +4,17 @@ const { PrismaClient } = require('@prisma/client');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const dataRoutes = require('./routes/dataRoutes'); 
-const cors = require('cors');
-require('dotenv').config();
+const cors = require('cors'); // We need this to allow the frontend to talk to the backend
 
 // --- Setup ---
 const app = express();
 const prisma = new PrismaClient();
 app.use(express.json()); 
 app.use(cors({
-  origin: process.env.CORS_ORIGIN || 'http://localhost:3000',
+  origin: 'http://localhost:3000', // Allow only the Next.js frontend to connect
 })); 
 const PORT = process.env.PORT || 3001;
-const JWT_SECRET = process.env.JWT_SECRET || "your-very-secret-key-for-auth"; 
+const JWT_SECRET = "your-very-secret-key-for-auth"; 
 
 // --- Authentication Endpoints ---
 

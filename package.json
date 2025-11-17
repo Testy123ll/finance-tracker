@@ -1,0 +1,33 @@
+{
+  "name": "finance-tracker",
+  "version": "1.0.0",
+  "description": "Full-stack finance tracker application with Next.js frontend and Express backend",
+  "private": true,
+  "workspaces": [
+    "finance-tracker-backend",
+    "finance-tracker-frontend"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev --workspace=finance-tracker-backend\" \"npm run dev --workspace=finance-tracker-frontend\"",
+    "build": "npm run build --workspace=finance-tracker-backend && npm run build --workspace=finance-tracker-frontend",
+    "start": "concurrently \"npm start --workspace=finance-tracker-backend\" \"npm start --workspace=finance-tracker-frontend\"",
+    "backend:dev": "npm run dev --workspace=finance-tracker-backend",
+    "backend:build": "npm run build --workspace=finance-tracker-backend",
+    "backend:start": "npm start --workspace=finance-tracker-backend",
+    "frontend:dev": "npm run dev --workspace=finance-tracker-frontend",
+    "frontend:build": "npm run build --workspace=finance-tracker-frontend",
+    "frontend:start": "npm start --workspace=finance-tracker-frontend"
+  },
+  "keywords": [
+    "finance",
+    "tracker",
+    "nextjs",
+    "express",
+    "prisma"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
