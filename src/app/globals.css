@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body { height: 100%; }
+* { box-sizing: border-box; }
+
+/* Global look & feel enhancements */
+:root {
+  --card-bg: #ffffff;
+  --card-border: #f1f5f9;
+}
+
+@layer components {
+  .card {
+    @apply bg-white p-6 rounded-xl shadow-sm border border-gray-100;
+  }
+  .section-title {
+    @apply text-3xl font-bold tracking-tight;
+  }
+  .muted {
+    @apply text-gray-600;
+  }
+  .btn-primary {
+    @apply bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700;
+  }
+  .btn-secondary {
+    @apply bg-white text-gray-800 px-4 py-2 rounded border border-gray-300 hover:bg-gray-100;
+  }
+}
