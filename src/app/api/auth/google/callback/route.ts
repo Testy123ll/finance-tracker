@@ -50,8 +50,7 @@ export async function GET(req: NextRequest) {
     user = await prisma.user.create({
       data: {
         email,
-        name,
-        // Placeholder passwordHash for OAuth accounts
+        name: name || undefined,
         passwordHash: 'oauth-google',
       },
     })
